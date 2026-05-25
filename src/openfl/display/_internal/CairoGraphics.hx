@@ -736,7 +736,7 @@ class CairoGraphics
 		var setStart = false;
 
 		cairo.fillRule = EVEN_ODD;
-		setSmoothing(true);
+		cairo.antialias = SUBPIXEL;
 
 		var hasPath:Bool = false;
 
@@ -1464,7 +1464,7 @@ class CairoGraphics
 					var t1:Float, t2:Float, t3:Float, t4:Float;
 					var dx:Float, dy:Float;
 
-					setSmoothing(false);
+					cairo.antialias = NONE;
 
 					while (i < l)
 					{
@@ -2275,18 +2275,6 @@ class CairoGraphics
 		}
 		#end
 	}
-
-	#if lime_cairo
-	private static function setSmoothing(smooth:Bool):Void
-	{
-		if (!allowSmoothing)
-		{
-			smooth = false;
-		}
-
-		cairo.antialias = smooth ? SUBPIXEL : NONE;
-	}
-	#end
 }
 
 private typedef NormalizedUVT =
